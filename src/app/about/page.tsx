@@ -58,9 +58,14 @@ const page = () => {
 				</p>
 			</div>
 			<div>
-				<h3 className='text-xl font-semibold'>Arthur's Details:</h3>
+				<h3 className='text-xl font-semibold'>
+					Creator&#39;s Details:
+				</h3>
 				<span>
-					LinkedIn: <p>GitHub: https://github.com/NaijasonEzeiru</p>
+					<p>
+						LinkedIn: https://www.linkedin.com/in/chibuike-ezeiru/
+					</p>
+					<p>GitHub: https://github.com/NaijasonEzeiru</p>
 				</span>
 			</div>
 		</div>
