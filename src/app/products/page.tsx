@@ -20,7 +20,7 @@ const VehiclesInput = dynamic(
 	// { ssr: false }
 );
 
-const like = (data) => {
+const like = (data: any) => {
 	console.log({ like: data });
 };
 

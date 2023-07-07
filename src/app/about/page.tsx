@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const page = () => {
@@ -62,7 +63,9 @@ const page = () => {
 					Creator&#39;s Details:
 				</h3>
 				<span className='flex flex-col gap-2'>
-					<span className='flex gap-2'>
+					<Link
+						href={'https://www.linkedin.com/in/chibuike-ezeiru'}
+						className='flex gap-2 text-goldColor'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							width='24'
@@ -73,10 +76,12 @@ const page = () => {
 						</svg>
 						<p>
 							LinkedIn:
-							https://www.linkedin.com/in/chibuike-ezeiru/
+							https://www.linkedin.com/in/chibuike-ezeiru
 						</p>
-					</span>
-					<span className='flex gap-2'>
+					</Link>
+					<Link
+						href='https://github.com/NaijasonEzeiru'
+						className='flex gap-2 text-goldColor'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							width='24'
@@ -90,8 +95,16 @@ const page = () => {
 							/>
 						</svg>
 						<p>GitHub: https://github.com/NaijasonEzeiru</p>
-					</span>
+					</Link>
 				</span>
+			</div>
+			<div>
+				<h3 className='text-xl font-semibold mb-3'>Repository Link:</h3>
+				<Link
+					href='https://github.com/NaijasonEzeiru/portfolio-project'
+					className='text-goldColor'>
+					Repo Link
+				</Link>
 			</div>
 		</div>
 	);
