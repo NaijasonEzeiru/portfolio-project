@@ -19,6 +19,7 @@ const ThemeSwitcher = () => {
 	if (!mounted) return null;
 
 	return (
+		<>
 			<span
 				className='relative -top-1 group cursor-pointer w-7'
 				tabIndex={0}
