@@ -51,43 +51,8 @@ const NavBar = () => {
 				className={`flex gap-1 w-full left-0 absolute transition-transform z-50 bg-gray-100 flex-col py-8 px-2 top-11 md:w-auto md:static md:bg-transparent md:flex-row md:translate-x-0 md:py-0 dark:bg-secondary ${
 					!ham && 'transition-transform -translate-x-full'
 				}`}>
-				<Dropdown
-					content={categories}
-					value='Categories'
-					tab={TabIndex[ham.toString()]}>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						fill='none'
-						viewBox='0 0 24 24'
-						strokeWidth={1.5}
-						stroke='currentColor'
-						className='w-6 h-6'>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
 							d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
-						/>
-					</svg>
-				</Dropdown>
-				<p className='table px-3 w-full cursor-pointer'>Categories</p>
-				<Dropdown
-					content={categories}
-					value='Theme'
-					tab={TabIndex[ham.toString()]}>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						fill='none'
-						viewBox='0 0 24 24'
-						strokeWidth={1.5}
-						stroke='currentColor'
-						className='w-6 h-6'>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
-						/>
-					</svg>
-				</Dropdown>
+				<Link href="/about"><p className='table px-3 w-full cursor-pointer'>Login</p></Link>
 			</nav>
 
 			<div className='flex gap-3 items-center'>
