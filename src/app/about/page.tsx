@@ -30,14 +30,14 @@ const page = () => {
 					and sellers could connect and conduct transactions with
 					confidence. We wanted to eliminate the fear of scams and
 					fraudulent activities, offering a transparent and fair
-					system that protects the interests of all parties involved.
+					a system that protects the interests of all parties involved.
 				</p>
 				<p>
-					Our goal was to revolutionize the online buying and selling
+					Our goal was to revolutionize online buying and selling
 					experience by combining the ease of browsing through
 					classified ads with the peace of mind that comes with escrow
 					services. We sought to build trust and foster a vibrant
-					marketplace where individuals could confidently trade a wide
+					a marketplace where individuals could confidently trade a wide
 					range of products and services.
 				</p>
 				<p>
@@ -58,7 +58,7 @@ const page = () => {
 				</p>
 			</div>
 			<div>
-				<h3 className='text-xl font-semibold'>Arthur's Details:</h3>
+				<h3 className='text-xl font-semibold'>Creators Details:</h3>
 				<span>
 					LinkedIn: <p>GitHub: https://github.com/NaijasonEzeiru</p>
 				</span>
