@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import NavBar from '../components/nav/NavBar';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Providers from '@/components/Providers';
 
 // const inter = Inter({ subsets: ['latin'] });
 
@@ -22,13 +21,11 @@ export default function RootLayout({
 	return (
 		<html lang='en' className='light' style={{ colorScheme: 'light' }}>
 			<AuthProvider>
-				<Providers>
-					<body className='bg-white dark:bg-primary'>
-						<NavBar />
-						{children}
-						<Footer />
-					</body>
-				</Providers>
+				<body className='bg-white dark:bg-primary'>
+					<NavBar />
+					{children}
+					<Footer />
+				</body>
 			</AuthProvider>
 		</html>
 	);
