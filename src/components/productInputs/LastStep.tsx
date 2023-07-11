@@ -49,6 +49,7 @@ const LastStep = () => {
 		for (let i = 0; i < formData.imgs.length; i++) {
 			formInputs.append('images[]', formData.imgs[i]?.value?.[0]);
 		}
+		// formData.imgs.values[0];
 		formInputs.append('desc', formData.desc);
 		formInputs.append('dynamic', JSON.stringify(formData.dynamic));
 		formInputs.append('city', formData.city);

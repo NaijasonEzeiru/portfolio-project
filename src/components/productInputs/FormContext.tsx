@@ -12,7 +12,7 @@ interface IFormData {
 	subCategory: string;
 	state: number;
 	city: string;
-	imgs: string[];
+	imgs: File[] | { value?: File }[];
 	dynamic: {};
 	desc: string;
 	userName: string;
@@ -38,7 +38,7 @@ const formState = createContext<IFormContext>({
 		subCategory: '',
 		state: 0,
 		city: '',
-		imgs: [''],
+		imgs: undefined,
 		dynamic: {},
 		desc: '',
 		userName: '',
@@ -56,7 +56,7 @@ export const FormContext = ({ children }: { children: ReactNode }) => {
 		subCategory: '',
 		state: 0,
 		city: '',
-		imgs: [''],
+		imgs: undefined,
 		dynamic: {},
 		desc: '',
 		userName: '',
