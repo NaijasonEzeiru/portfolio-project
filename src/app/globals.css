@@ -7,7 +7,9 @@
 	--background-start-rgb: 214, 219, 220;
 	--background-end-rgb: 255, 255, 255;
 	--primary-color: #3dd24c;
+	/* --primary-color: #3b3b3b; */
 	--secondary-color: #12882c;
+	/* --secondary-color: #1e1e1e; */
 	--disabled-color: #7cfb98;
 	--off-white-color: #f1f1f1;
 	--white-color: #fff;
@@ -32,6 +34,37 @@ body {
 	outline: red 1px solid;
 } */
 
+:nth-child(1) {
+	--index: 1;
+}
+:nth-child(2) {
+	--index: 2;
+}
+:nth-child(3) {
+	--index: 3;
+}
+:nth-child(4) {
+	--index: 4;
+}
+:nth-child(5) {
+	--index: 5;
+}
+:nth-child(6) {
+	--index: 6;
+}
+:nth-child(7) {
+	--index: 7;
+}
+:nth-child(8) {
+	--index: 8;
+}
+:nth-child(9) {
+	--index: 9;
+}
+:nth-child(10) {
+	--index: 10;
+}
+
 .border-tooltip::after {
 	border-color: transparent transparent var(--secondary-color) transparent;
 }
@@ -46,4 +79,21 @@ body {
 
 .modal {
 	box-shadow: 0px -258px 7px 20000px #000000bf;
+}
+
+.custom-shadow {
+	box-shadow: inset 0px 0px 5px 2px #12882c24;
+}
+
+.flip {
+	animation: flip 2s infinite;
+	animation-delay: calc(0.2s * var(--index)) !important;
+}
+
+@keyframes flip {
+	0%,
+	80% {
+		/* transform: rotateY(360deg); */
+		transform: matrix(1, 0, 0, 1, 13, 0);
+	}
 }

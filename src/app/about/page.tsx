@@ -1,3 +1,4 @@
+import LoadingPage from '@/components/LoadingPage';
 import Link from 'next/link';
 import React from 'react';
 

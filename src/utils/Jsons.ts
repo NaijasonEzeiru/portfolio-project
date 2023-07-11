@@ -926,35 +926,18 @@ export const places = [
 export const cat = [
 	{
 		name: 'Eletronics',
-		subs: [
-			'Accessories',
-			'Audio Equipments',
-			'Headphones',
-			'Laptops and Computers',
-			'Video Games'
-		]
+		subs: ['Headphones', 'Laptops and Computers']
 	},
 	{
 		name: 'Fashion',
-		subs: ['Bags', 'Clothing Accessories', 'Jewelries', 'Shoes', 'Watches']
+		subs: ['Jewelries', 'Shoes', 'Watches']
 	},
 	{
 		name: 'Vehicles',
-		subs: [
-			'Cars',
-			'Motorcycles',
-			'Vehicle Parts and Accessories',
-			'Buses',
-			'Truchs and Trailers'
-		]
-	},
-	{
-		name: 'Phones and Tablets',
-		subs: [
-			'Accessories for Phones and Tablets',
-			'Phones',
-			'Tablets',
-			'Smart Watches'
-		]
+		subs: ['Cars', 'Motorcycles', 'Buses', 'Trucks and Trailers']
 	}
+	// {
+	// 	name: 'Phones and Tablets',
+	// 	subs: ['Phones', 'Tablets', 'Smart Watches']
+	// }
 ];

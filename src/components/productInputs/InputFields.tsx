@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { Component, useEffect, useRef, useState } from 'react';
+
+// TODO: make one Component
 
 export const SelectInput = ({
 	register,
@@ -64,7 +66,41 @@ export const TextOrNumberInput = ({
 	return (
 		<div className='relative w-full'>
 			<input
-				className={`w-full p-[10px] border-solid border-[1px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0 text-black  text-base transition-transform invalid:border-red-600 peer ${
+				className={`w-full p-[10px] border-solid border-[1px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0   text-base transition-transform invalid:border-red-600 peer ${
+					fields && 'isValid'
+				} ${fields && errors && 'modified text-red-400'}`}
+				type={type}
+				{...register}
+				aria-invalid={!!errors}
+			/>
+			<span className='absolute left-0 p-[10px] pointer-events-none text-base  uppercase transition-transform peer-focus-visible:text-secondary peer-focus-visible:translate-x-[10px] peer-focus-visible:-translate-y-[7px] peer-focus-visible:text-[0.65rem] peer-focus-visible:py-0 peer-focus-visible:px-[10px] peer-[.category]:border-red-400 peer-focus-visible:bg-white peer-focus-visible:border-x-secondary peer-focus-visible:tracking-tight peer-focus-visible:transition-transform peer-focus-visible:opacity-100 peer-focus-visible:border-solid peer-focus-visible:border-[1px] peer-focus-visible:border-y-0 peer-focus-visible:leading-4 peer-[.isValid]:text-secondary peer-[.isValid]:translate-x-[10px] peer-[.isValid]:-translate-y-[7px] peer-[.isValid]:text-[0.65rem] peer-[.isValid]:py-0 peer-[.isValid]:px-[10px] peer-[.isValid]:bg-white peer-[.isValid]:border-x-secondary peer-[.isValid]:tracking-tight peer-[.isValid]:transition-transform peer-[.isValid]:opacity-100 peer-[.isValid]:border-solid peer-[.isValid]:border-[1px] peer-[.isValid]:border-y-0 peer-[.isValid]:leading-4 dark:peer-[.isValid]:bg-secondary dark:peer-focus-visible:bg-secondary dark:peer-[.isValid]:text-white dark:peer-focus-visible:text-white'>
+				{' '}
+				{placeholder}
+			</span>
+			<span className='text-red-400 dark:text-red-300 text-xs'>
+				{errors}
+			</span>
+		</div>
+	);
+};
+
+export const DescriptionInput = ({
+	register,
+	fields,
+	errors,
+	placeholder,
+	type
+}: {
+	type: 'text' | 'number';
+	register: any;
+	fields: boolean;
+	errors: string | undefined;
+	placeholder: string;
+}) => {
+	return (
+		<div className='relative w-full'>
+			<textarea
+				className={`w-full p-[10px] h-36 border-solid border-[1px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0  text-base transition-transform invalid:border-red-600 peer ${
 					fields && 'isValid'
 				} ${fields && errors && 'modified text-red-400'}`}
 				type={type}
@@ -136,7 +172,7 @@ export const CheckboxInput = ({
 			<span className='absolute left-0 top-0 p-[10px] pointer-events-none text-base  uppercase transition-transform peer-focus-visible:text-secondary peer-focus-visible:translate-x-[10px] peer-focus-visible:-translate-y-[7px] peer-focus-visible:text-[0.65rem] peer-focus-visible:py-0 peer-focus-visible:px-[10px] peer-[.category]:border-red-400 peer-focus-visible:bg-white peer-focus-visible:border-x-secondary peer-focus-visible:tracking-tight peer-focus-visible:transition-transform peer-focus-visible:opacity-100 peer-focus-visible:border-solid peer-focus-visible:border-[1px] peer-focus-visible:border-y-0 peer-focus-visible:leading-4 peer-[.isValid]:text-secondary peer-[.isValid]:translate-x-[10px] peer-[.isValid]:-translate-y-[7px] peer-[.isValid]:text-[0.65rem] peer-[.isValid]:py-0 peer-[.isValid]:px-[10px] peer-[.isValid]:bg-white peer-[.isValid]:border-x-secondary peer-[.isValid]:tracking-tight peer-[.isValid]:transition-transform peer-[.isValid]:opacity-100 peer-[.isValid]:border-solid peer-[.isValid]:border-[1px] peer-[.isValid]:border-y-0 peer-[.isValid]:leading-4 dark:peer-[.isValid]:bg-secondary dark:peer-focus-visible:bg-secondary dark:peer-[.isValid]:text-white dark:peer-focus-visible:text-white'>
 				{placeholder}
 			</span>
-			<p className='absolute left-0 top-0 p-[10px] pointer-events-none text-base'>
+			<p className='absolute left-0 top-0 p-[10px] pointer-events-none text-base truncate w-full text-left'>
 				{fields && checked.join(', ')}
 			</p>
 			<span className='text-red-400 dark:text-red-300 text-xs'>
@@ -160,6 +196,7 @@ export const CheckboxInput = ({
 					</span>
 				))}
 				<button
+					type='button'
 					onClick={() => setShowModal(false)}
 					className='flex gap-1 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto'>
 					Apply

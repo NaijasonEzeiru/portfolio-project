@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: any) => {
 	};
 
 	const signout = async () => {
-		const res = await fetch('https://somercu.onrender.com/auth/logout', {
+		const res = await fetch(`${apiAddress}/auth/logout`, {
 			method: 'POST',
 			credentials: 'include'
 		});
@@ -63,21 +63,21 @@ export const AuthProvider = ({ children }: any) => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	checkUserLoggedIn();
-	// 	console.log({ auth: user });
-	// }, []);
+	useEffect(() => {
+		checkUserLoggedIn();
+		console.log({ auth: user });
+	}, []);
 
 	const checkUserLoggedIn = async () => {
 		console.log('effect');
-		const res = await fetch('https://somercu.onrender.com/auth/me', {
+		const res = await fetch(`${apiAddress}/auth/me`, {
 			method: 'GET',
 			credentials: 'include'
 		});
 		const data = await res.json();
 		console.log('🚀 ~ file: AuthContext.tsx:56 ~ data:', data);
-		if (res.ok) {
-			console.log({ acc_no: data.account_no });
+		if (res.status == 201) {
+			console.log('wow');
 			setUser(data);
 			setAuthChecking(false);
 		} else {

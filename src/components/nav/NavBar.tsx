@@ -99,7 +99,7 @@ const NavBar = () => {
 						Cart
 					</span>
 				</span> */}
-				<Link href={'/login'} className='text-inherit contents '>
+				<Link href={'/profile'} className='text-inherit contents '>
 					<span
 						id='user'
 						tabIndex={0}
@@ -117,8 +117,8 @@ const NavBar = () => {
 								d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
 							/>
 						</svg>
-						<span className='hidden group-focus:block group-hover:block bg-secondary text-white rounded-[4px] py-[1px] px-[3px] text-xs text-center z-50 absolute top-[110%] left-0 dark:bg-white dark:text-black after:content-[""] after:absolute after:bottom-full after:left-[40%] after:-ml[5px] after:border-[5px] after:border-solid after:border-b-secondary after:border-x-transparent after:border-t-transparent dark:after:border-b-white'>
-							User
+						<span className='hidden group-focus:block group-hover:block bg-secondary text-white rounded-[4px] py-[1px] px-[3px] text-xs text-center z-50 absolute top-[110%] -left-1 dark:bg-white dark:text-black after:content-[""] after:absolute after:bottom-full after:left-[40%] after:-ml[5px] after:border-[5px] after:border-solid after:border-b-secondary after:border-x-transparent after:border-t-transparent dark:after:border-b-white'>
+							Profile
 						</span>
 					</span>
 				</Link>
@@ -127,7 +127,7 @@ const NavBar = () => {
 			<span
 				tabIndex={0}
 				className={
-					'group border-[1px] border-black dark:border-white py-3 px-2 relative bg-transparent shadow-md md:hidden'
+					'group border-[1px] border-black dark:border-white py-3 px-2 relative bg-transparent shadow-md md:hidden rounded-lg'
 				}
 				onClick={() => setHam(!ham)}>
 				<span

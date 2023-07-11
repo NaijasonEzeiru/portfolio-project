@@ -21,12 +21,12 @@ export const LoginSchema = z.object({
 
 export const RegisterSchema = z
 	.object({
-		first_name: z
+		firstName: z
 			.string()
 			.min(2, { message: 'Must contain at least 2 characters' })
 			.max(15, { message: 'Must contain at most 15 characters' })
 			.regex(/[a-zA-z]/, { message: 'Must contain alphabets only' }),
-		last_name: z
+		lastName: z
 			.string()
 			.min(2, { message: 'Must contain at least 2 characters' })
 			.max(15, { message: 'Must contain at most 15 characters' })
@@ -35,113 +35,41 @@ export const RegisterSchema = z
 			.string()
 			.email({ message: 'Please input a valid email address' })
 			.max(40, { message: 'Must contain at most 40 characters' }),
+		phone: z.coerce.number(),
+		// .min(11, { message: 'must be a valid phone number' })
+		// .max(11, { message: 'must be a valid phone number' }),
 		password: z
 			.string()
 			.min(4, { message: 'Must contain at least 4 characters' })
 			.max(20, { message: 'Must contain at most 20 characters' }),
-		confirm_password: z
+		confirmPassword: z
 			.string()
 			.min(4, { message: 'Must contain at least 4 characters' })
 			.max(20, { message: 'Must contain at most 20 characters' })
 	})
-	.superRefine(({ confirm_password, password }, ctx) => {
-		if (confirm_password !== password) {
+	.superRefine(({ confirmPassword, password }, ctx) => {
+		if (confirmPassword !== password) {
 			ctx.addIssue({
 				code: 'custom',
-				message: 'The passwords do not match'
+				message: 'The passwords do not match',
+				path: ['confirmPassword']
 			});
 		}
 	});
 
-export const NewProductSchema = z.object({
-	// desc: z.string(),
-	brandName: z
-		.string()
-		.min(3, { message: 'Must contain at least 3 characters' })
-		.max(20, { message: 'Must contain at most 20 characters' }),
-	title: z
-		.string()
-		.min(3, { message: 'Must contain at least 3 characters' })
-		.max(20, { message: 'Must contain at most 20 characters' }),
-	gender: z.enum(['Male', 'Female', 'Unisex'], {
-		errorMap: (issue, _ctx) => {
-			switch (issue.code) {
-				case 'invalid_type':
-					return { message: 'Not a valid gender type' };
-				case 'invalid_enum_value':
-					return { message: 'Invalid gender value' };
-				default:
-					return { message: 'Invalid Value' };
-			}
-		}
-	}),
-	category: z.coerce.number().min(0).max(20),
-	subCategory: z.string().min(3, { message: 'Select the sub-category' }),
-	state: z.coerce.number().min(0).max(36),
-	city: z.string().min(3, { message: 'Select the city' }),
-	type: z.string().min(3, { message: 'Select the type' }),
-	condition: z.string().min(3, { message: 'Select the condition' }),
-	transmission: z.string().min(3, { message: 'Select the transmission' }),
-	model: z.string().min(3, { message: 'Select the model' }),
-	keyFeatures: z
-		.string()
-		.array()
-		.nonempty({ message: 'This field is required' }),
-	colour: z.string().min(3, { message: 'input the colour' }),
-	VIN: z.string().min(3, { message: 'input the VIN' }),
-	yearOfManufacture: z
-		.string()
-		.min(3, { message: 'Select the year of manufacature' }),
-	price: z.coerce.number().positive(),
-	mileage: z.coerce.number().positive(),
-	desc: z.string().min(20, { message: 'Too short' }),
-	imgs: z
-		.object({
-			value: z
-				.custom<File>()
-				.refine((file) => !!file?.[0], 'Img field cannot be empty')
-				.refine(
-					(file) => file?.[0]?.size <= MAX_FILE_SIZE,
-					'Max image size is 5MB.'
-				)
-		})
-		.array(),
-	secondCondition: z
-		.string()
-		.min(3, { message: 'Select the second condition' }),
-	registered: z
-		.string()
-		.array()
-		.nonempty({ message: 'This field is required' }),
-	sizes: z
-		.string()
-		.array()
-		.nonempty({ message: 'At least one size must be selected' }),
-	colors: z.array(
-		z.object({
-			name: z.string().min(2, {
-				message: 'Color name must be at least two characters'
-			}),
-			hex: z.string().min(6, { message: 'Please select a color' })
-		})
-	)
-});
-
 export const VehicleSchema = z.object({
 	condition: z.string().min(3, { message: 'Select the condition' }),
 	transmission: z.string().min(3, { message: 'Select the transmission' }),
-	model: z.string().min(3, { message: 'Select the model' }),
-	keyFeatures: z
-		.string()
-		.array()
-		.nonempty({ message: 'This field is required' }),
-	colour: z.string().min(3, { message: 'input the colour' }),
-	VIN: z.string().min(3, { message: 'input the VIN' }),
+	model: z.string().min(3, { message: 'input the model' }),
+	keyFeatures: z.string().array().optional(),
+	// .nonempty({ message: 'This field is required' }),
+	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	// VIN: z.string().min(3, { message: 'input the VIN' }),
 	make: z.string().min(3, { message: 'input the make' }),
 	yearOfManufacture: z
 		.string()
 		.min(3, { message: 'Select the year of manufacature' }),
-	// mileage: z.coerce.number().positive(),
+	mileage: z.coerce.number().positive().optional(),
 	secondCondition: z
 		.string()
 		.min(3, { message: 'Select the second condition' })
@@ -151,13 +79,89 @@ export const VehicleSchema = z.object({
 	// 	.nonempty({ message: 'This field is required' })
 });
 
+export const FashionWatchesSchema = z.object({
+	title: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	brand: z.string().min(3, { message: 'input the brand name' }),
+	gender: z.string().min(3, { message: 'Select the gender' }),
+	movement: z.string().min(3, { message: 'Select the movement type' }),
+	display: z.string().min(3, { message: 'Select the display type' }),
+	bandMaterial: z.string().min(3, { message: 'Select the band material' }),
+	condition: z.string().min(3, { message: 'Select the condition' }),
+	bandColour: z
+		.string()
+		.min(3, { message: 'Cannot be less than 3 characters' }),
+	features: z
+		.string()
+		.array()
+		.nonempty({ message: 'This field is required' }),
+	style: z.string().array().nonempty({ message: 'This field is required' })
+});
+
+export const lastStepSchema = z.object({
+	price: z.coerce.number().positive(),
+	desc: z.string().min(20, { message: 'Too short' }),
+	negotiable: z.string().min(2, { message: 'Select the condition' }),
+	phone: z.coerce.string(),
+	userName: z.string().min(3, { message: 'Cannot be less than 3 characters' })
+});
+
+export const HeadphonesSchema = z.object({
+	condition: z.string().min(3, { message: 'Select the condition' }),
+	type: z.string().min(3, { message: 'Select the type' }),
+	model: z.string().min(3, { message: 'input the model' }),
+	formFactor: z.string().min(3, { message: 'This field is required' }),
+	connectivity: z.string().min(3, { message: 'This field is required' }),
+	resistance: z
+		.string()
+		.min(3, { message: 'Cannot be less than 3 characters' }),
+	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	brand: z.string().min(3, { message: 'input the brand' })
+});
+
+export const JewelriesSchema = z.object({
+	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	title: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	brand: z.string().min(3, { message: 'input the brand' }),
+	condition: z.string().min(3, { message: 'Select the condition' }),
+	gender: z.string().min(3, { message: 'Select the gender' }),
+	mainMaterial: z.string().min(3, { message: 'This field is required' }),
+	mainStone: z.string().min(3, { message: 'This field is required' }),
+	type: z.string().min(3, { message: 'Select the type' })
+});
+
+export const ShoesSchema = z.object({
+	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	title: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	brand: z.string().min(3, { message: 'input the brand' }),
+	size: z.string().min(1, { message: 'input the size' }),
+	condition: z.string().min(3, { message: 'Select the condition' }),
+	gender: z.string().min(3, { message: 'Select the gender' }),
+	mainMaterial: z.string().min(3, { message: 'This field is required' }),
+	soleMaterial: z.string().min(3, { message: 'This field is required' }),
+	type: z.string().min(3, { message: 'Select the type' })
+});
+
+export const LaptopAndComputersSchema = z.object({
+	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
+	brand: z.string().min(3, { message: 'input the brand' }),
+	condition: z.string().min(3, { message: 'Select the condition' }),
+	model: z.string().min(3, { message: 'input the model' }),
+	type: z.string().min(3, { message: 'Select the type' }),
+	processor: z.string().min(3, { message: 'This field is required' }),
+	operatingSystem: z.string().min(3, { message: 'This field is required' }),
+	storageCapacity: z.string().min(3, { message: 'This field is required' }),
+	displaySize: z.string().min(3, { message: 'This field is required' }),
+	graphicCard: z.string().min(3, { message: 'This field is required' }),
+	storageType: z.string().min(3, { message: 'This field is required' }),
+	RAM: z.string().min(3, { message: 'This field is required' }),
+	numberOfCores: z.string().min(3, { message: 'This field is required' })
+});
+
 export const NewProductGeneralSchema = z.object({
 	category: z.coerce.number().min(0).max(20),
 	subCategory: z.string().min(3, { message: 'Select the sub-category' }),
 	state: z.coerce.number().min(0).max(36),
 	city: z.string().min(3, { message: 'Select the city' }),
-	price: z.coerce.number().positive(),
-	// desc: z.string().min(20, { message: 'Too short' }),
 	imgs: z
 		.object({
 			value: z
@@ -172,13 +176,18 @@ export const NewProductGeneralSchema = z.object({
 });
 
 export type LoginSchemaType = z.infer<typeof LoginSchema>;
-
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>;
-
-export type NewProductSchemaType = z.infer<typeof NewProductSchema>;
-
+export type lastStepSchemaType = z.infer<typeof lastStepSchema>;
+export type FashionWatchesSchemaType = z.infer<typeof FashionWatchesSchema>;
+export type VehicleSchemaType = z.infer<typeof VehicleSchema>;
+export type HeadphonesSchemaType = z.infer<typeof HeadphonesSchema>;
+export type JewelriesSchemaType = z.infer<typeof JewelriesSchema>;
+export type ShoesSchemaType = z.infer<typeof ShoesSchema>;
+export type LaptopAndComputersSchemaType = z.infer<
+	typeof LaptopAndComputersSchema
+>;
 export type NewProductGeneralSchemaType = z.infer<
 	typeof NewProductGeneralSchema
 >;
 
-export type VehicleSchemaType = z.infer<typeof VehicleSchema>;
+// computer  monitors, game consoles

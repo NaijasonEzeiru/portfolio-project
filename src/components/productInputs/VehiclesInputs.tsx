@@ -8,8 +8,10 @@ import {
 	TextOrNumberInput
 } from '@/components/productInputs/InputFields';
 import { useEffect, useState } from 'react';
+import { useFormState } from './FormContext';
 
-const VehiclesInput = ({ setter, trigg }: any) => {
+const VehiclesInput = () => {
+	const { handleNext, step, setFormData, formData } = useFormState();
 	const keyFeat = [
 		'Air Comitioning',
 		'Airbags',
@@ -49,40 +51,40 @@ const VehiclesInput = ({ setter, trigg }: any) => {
 
 	const secondState = ['Faulty', 'No Fault'];
 
-	const trans = ['AMT', 'Automatic', 'CVT', 'Manual'];
+	const trans = ['Automatic', 'Manual'];
 
 	const {
 		register,
 		watch,
-		trigger,
-		formState: { errors }
+		handleSubmit,
+		formState: { errors, isSubmitting }
 	} = useForm<VehicleSchemaType>({
 		defaultValues: {
 			yearOfManufacture: '',
 			condition: '',
 			secondCondition: '',
-			transmission: ''
+			transmission: '',
+			colour: '',
+			make: '',
+			mileage: undefined,
+			model: ''
 		},
-		mode: 'onTouched',
+		mode: 'onChange',
 		reValidateMode: 'onSubmit',
 		resolver: zodResolver(VehicleSchema)
 	});
 
-	useEffect(() => {
-		console.log(trigg);
-		if (trigg > 2) {
-			trigger();
-		}
-	}, [trigg]);
-
 	const fields = watch();
 
-	setter(fields);
-
-	console.log(watch());
+	const submit = async (data: VehicleSchemaType) => {
+		setFormData((prev) => ({ ...prev, dynamic: data }));
+		handleNext('last');
+	};
 
 	return (
-		<>
+		<form
+			onSubmit={handleSubmit(submit)}
+			className='flex flex-col gap-7 text-black dark:text-white'>
 			<TextOrNumberInput
 				register={register('make')}
 				errors={errors?.make?.message}
@@ -95,13 +97,6 @@ const VehiclesInput = ({ setter, trigg }: any) => {
 				errors={errors?.model?.message}
 				fields={fields?.model?.length > 0}
 				placeholder='model'
-				type='text'
-			/>
-			<TextOrNumberInput
-				register={register('VIN')}
-				errors={errors?.VIN?.message}
-				fields={fields?.VIN?.length > 0}
-				placeholder='VIN'
 				type='text'
 			/>
 
@@ -141,15 +136,38 @@ const VehiclesInput = ({ setter, trigg }: any) => {
 				fields={fields?.transmission?.length > 0}
 				placeholder='transmission'
 			/>
-			<CheckboxInput
-				items={keyFeat}
-				register={register('keyFeatures')}
-				errors={errors?.keyFeatures?.message}
-				placeholder='key features'
-				fields={fields?.keyFeatures?.length > 0}
-				checked={fields?.keyFeatures}
-			/>
-		</>
+			<div
+				className={`${
+					fields.condition !== 'Brand New' ? 'block' : 'none'
+				}`}>
+				<TextOrNumberInput
+					register={register('mileage')}
+					errors={errors?.mileage?.message}
+					fields={fields?.mileage > -1}
+					placeholder='mileage'
+					type='number'
+				/>
+			</div>
+			<div
+				className={`${
+					formData.subCategory == 'Motorcycles' ? 'block' : 'none'
+				}`}>
+				<CheckboxInput
+					items={keyFeat}
+					register={register('keyFeatures')}
+					errors={errors?.keyFeatures?.message}
+					placeholder='key features'
+					fields={fields?.keyFeatures?.length > 0}
+					checked={fields?.keyFeatures}
+				/>
+			</div>
+			<button
+				type='submit'
+				disabled={isSubmitting}
+				className='flex gap-1 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto disabled:bg-red-600'>
+				Next
+			</button>
+		</form>
 	);
 };
 
