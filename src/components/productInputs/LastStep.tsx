@@ -14,10 +14,12 @@ import { useFormState } from './FormContext';
 import { useContext } from 'react';
 import AuthContext from '../AuthContext';
 import { apiAddress } from '@/utils/variables';
+import { useRouter } from 'next/navigation';
 
 const LastStep = () => {
 	const { setFormData, formData } = useFormState();
 	const { user }: any = useContext(AuthContext);
+	const router = useRouter();
 
 	const yesOrNo = ['Yes', 'No'];
 
@@ -64,6 +66,9 @@ const LastStep = () => {
 		});
 		const response = await res.json();
 		console.log(response);
+		if (response.ok) {
+			router.push('/');
+		}
 	};
 
 	return (

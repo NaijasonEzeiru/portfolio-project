@@ -19,8 +19,10 @@ const ShoesInput = () => {
 		'Compass',
 		'LED Display',
 		'Water Resistance',
-		'Other'
+		'Luminous'
 	];
+	const gender = ['Male', 'Female', 'Unisex'];
+
 	const watchBandMaterials = [
 		'Stainless steel',
 		'Leather',
@@ -90,12 +92,12 @@ const ShoesInput = () => {
 				placeholder='brand'
 				type='text'
 			/>
-			<TextOrNumberInput
-				register={register('gender')}
-				errors={errors?.gender?.message}
-				fields={fields?.gender?.length > 0}
-				placeholder='gender'
-				type='text'
+			<SelectInput
+				items={movements}
+				register={register('movement')}
+				errors={errors?.movement?.message}
+				fields={fields?.movement?.length > 0}
+				placeholder='movement'
 			/>
 
 			<TextOrNumberInput
@@ -106,11 +108,11 @@ const ShoesInput = () => {
 				type='text'
 			/>
 			<SelectInput
-				items={movements}
-				register={register('movement')}
-				errors={errors?.movement?.message}
-				fields={fields?.movement?.length > 0}
-				placeholder='movement'
+				items={gender}
+				register={register('gender')}
+				errors={errors?.gender?.message}
+				fields={fields?.gender?.length > 0}
+				placeholder='gender'
 			/>
 			<SelectInput
 				items={displays}

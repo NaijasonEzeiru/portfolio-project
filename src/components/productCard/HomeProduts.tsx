@@ -33,11 +33,9 @@ const HomeProduts = () => {
 	) : (
 		<div className='px-3 py-11 grid gap-x-2 gap-y-3 gtc grid-flow-row md:px-14 lg:px-32'>
 			{allProucts.map((product, i) =>
-				JSON.stringify(product.specifications)?.title ? (
+				JSON.parse(product.specifications)?.title ? (
 					<VerticalProductCard
-						productName={
-							JSON.stringify(product.specifications).title
-						}
+						productName={JSON.parse(product.specifications).title}
 						location={product.state + ' ' + product.city}
 						productPrice={+product.price}
 						key={i}
@@ -47,19 +45,14 @@ const HomeProduts = () => {
 					<VerticalProductCard
 						key={i}
 						productName={`${
-							JSON.stringify(product.specifications).brand
-						} ${JSON.stringify(product?.specifications)?.model}`}
+							JSON.parse(product.specifications).brand
+						} ${JSON.parse(product?.specifications)?.model}`}
 						location={product.state + ' ' + product.city}
 						productPrice={+product.price}
 						imgs={product.cloudinary_ids}
 					/>
 				)
 			)}
-			{/* <VerticalProductCard
-				productName={'Product Name'}
-				location={'Ejigbo, Lsgos'}
-				productPrice={200}
-			/> */}
 		</div>
 	);
 };
