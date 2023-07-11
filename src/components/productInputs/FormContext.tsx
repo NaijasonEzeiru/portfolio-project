@@ -12,7 +12,7 @@ interface IFormData {
 	subCategory: string;
 	state: number;
 	city: string;
-	imgs: File[] | { value?: File }[] | { value?: File[] }[];
+	imgs: File[] | { value?: File }[] | { value?: File[] }[] | any;
 	dynamic: {};
 	desc: string;
 	userName: string;
