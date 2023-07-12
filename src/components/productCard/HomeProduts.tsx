@@ -3,8 +3,8 @@ import { apiAddress } from '@/utils/variables';
 import VerticalProductCard from './VerticalProductCard';
 import LoadingPage from '../LoadingPage';
 
-const HomeProduts = () => {
-	const [allProucts, setAllProduts] = useState([]);
+const HomeProducts = () => {
+	const [allProducts, setAllProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -18,7 +18,7 @@ const HomeProduts = () => {
 			console.log('🚀 ~ product:', data);
 			if (data) {
 				console.log('no product');
-				setAllProduts(data);
+				setAllProducts(data);
 				setLoading(false);
 			} else {
 				console.log('products');
@@ -32,7 +32,7 @@ const HomeProduts = () => {
 		<LoadingPage />
 	) : (
 		<div className='px-3 py-11 grid gap-x-2 gap-y-3 gtc grid-flow-row md:px-14 lg:px-32'>
-			{allProucts.map((product, i) =>
+			{allProducts.map((product, i) =>
 				JSON.parse(product.specifications)?.title ? (
 					<VerticalProductCard
 						productName={JSON.parse(product.specifications).title}
@@ -40,6 +40,7 @@ const HomeProduts = () => {
 						productPrice={+product.price}
 						key={i}
 						imgs={product.cloudinary_ids}
+						id={product.id}
 					/>
 				) : (
 					<VerticalProductCard
@@ -50,6 +51,7 @@ const HomeProduts = () => {
 						location={product.state + ' ' + product.city}
 						productPrice={+product.price}
 						imgs={product.cloudinary_ids}
+						id={product.id}
 					/>
 				)
 			)}
@@ -57,4 +59,4 @@ const HomeProduts = () => {
 	);
 };
 
-export default HomeProduts;
+export default HomeProducts;

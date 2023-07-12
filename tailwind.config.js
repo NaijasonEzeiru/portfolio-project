@@ -21,6 +21,9 @@ module.exports = {
 			},
 			gridTemplateColumns: {
 				fluid: 'repeat(auto-fit, minmax(200px, 1fr)'
+			},
+			aspectRatio: {
+				'4/3': '4 / 3'
 			}
 			// textColor: {
 			// }
