@@ -73,8 +73,7 @@ export const AuthProvider = ({ children }: any) => {
 		console.log('effect');
 		const res = await fetch(`${apiAddress}/auth/me`, {
 			method: 'GET',
-			credentials: 'include',
-			mode: 'no-cors'
+			credentials: 'include'
 		});
 		const data = await res.json();
 		console.log('🚀 ~ file: AuthContext.tsx:56 ~ data:', data);
