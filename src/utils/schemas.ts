@@ -111,9 +111,7 @@ export const HeadphonesSchema = z.object({
 	model: z.string().min(3, { message: 'input the model' }),
 	formFactor: z.string().min(3, { message: 'This field is required' }),
 	connectivity: z.string().min(3, { message: 'This field is required' }),
-	resistance: z
-		.string()
-		.min(3, { message: 'Cannot be less than 3 characters' }),
+	resistance: z.string().optional(),
 	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
 	brand: z.string().min(3, { message: 'input the brand' })
 });

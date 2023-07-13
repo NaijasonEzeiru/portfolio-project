@@ -44,7 +44,9 @@ const Product = ({ params }) => {
 		<div className='min-h-[75vh] bg-white rounded-lg shadow-md text-black py-12 my-8 px-3 m-3 flex dark:bg-secondary dark:text-white md:mx-14 md:px-16 lg:mx-32'>
 			{/* My product : {params.id}
 			<p>{productData?.[0]?.category}</p> */}
-
+			{/* <span className='w-12 h-12 bg-red-700 rounded-[50%] flex items-center justify-center absolute top-0 bottom-0 m-auto cursor-pointer opacity-50 z-10'>
+				<span className='w-10 h-10 bg-secondary'></span>
+			</span> */}
 			{productData.length > 0 &&
 				productData.map((product, i) => (
 					<div key={i} className='w-full h-full flex flex-col gap-3'>
@@ -60,7 +62,9 @@ const Product = ({ params }) => {
 						</div>
 						<div className='flex gap-2'>
 							{product.cloudinary_ids.map((imgs, i) => (
-								<div key={i} className=''>
+								<div
+									key={i}
+									className='flex overflow-y-hidden overflow-x-auto overscroll-x-contain snap-mandatory snap-x'>
 									<div className='bg-red-700 w-full aspect-4/3 overflow-hidden'>
 										<Image
 											src={imgs}
@@ -137,6 +141,7 @@ const Product = ({ params }) => {
 						</div>
 						<hr />
 						<div>
+							<p>Description:</p>
 							<p>{product.description}</p>
 						</div>
 					</div>
