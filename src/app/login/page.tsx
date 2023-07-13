@@ -37,7 +37,7 @@ const Login = () => {
 	// 		headers: {
 	// 			'Content-Type': 'application/json'
 	// 		},
-	// 		credentials: 'include',
+	// 		credentials: 'include', mode: 'no-cors',
 	// 		body: JSON.stringify({
 	// 			email,
 	// 			password

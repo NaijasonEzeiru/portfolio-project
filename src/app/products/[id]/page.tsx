@@ -100,8 +100,11 @@ const Product = ({ params }) => {
 								<input
 									type='text'
 									placeholder='Type a message'
-									className='h-10 w-full border-solid border-gray-500 border-[1px] rounded-lg'
+									className='h-11 pl-1 w-full border-solid border-gray-500 border-[1px] rounded-lg bg-transparent dark:border-gray-400'
 								/>
+								{/* <textarea
+									className='w-full border-solid border-gray-500 border-[1px] rounded-lg bg-transparent dark:border-gray-400'
+									placeholder='Type a message'></textarea> */}
 							</span>
 							<span className='text-center w-full'>
 								<button className='gap-1 w-full sm:w-max py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black'>
@@ -114,11 +117,27 @@ const Product = ({ params }) => {
 							{Object.keys(
 								JSON.parse(product.specifications)
 							).map((key, i) => (
-								<p key={i}>
-									{key} :{' '}
-									{JSON.parse(product.specifications)[key]}
-								</p>
+								<span
+									key={i}
+									className='py-3 flex items-center gap-1'>
+									<p className='capitalize font-thin text-sm'>
+										{key}:
+									</p>
+									<p className='capitalize text-base'>
+										{JSON.parse(product.specifications)[
+											key
+										].toString()}
+									</p>
+								</span>
+								// <p key={i}>
+								// 	{key} :{' '}
+								// 	{JSON.parse(product.specifications)[key]}
+								// </p>
 							))}
+						</div>
+						<hr />
+						<div>
+							<p>{product.description}</p>
 						</div>
 					</div>
 				))}

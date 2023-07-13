@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }: any) => {
 				'Content-Type': 'application/json'
 			},
 			credentials: 'include',
+			mode: 'no-cors',
 			body: JSON.stringify({
 				email,
 				password
@@ -72,7 +73,8 @@ export const AuthProvider = ({ children }: any) => {
 		console.log('effect');
 		const res = await fetch(`${apiAddress}/auth/me`, {
 			method: 'GET',
-			credentials: 'include'
+			credentials: 'include',
+			mode: 'no-cors'
 		});
 		const data = await res.json();
 		console.log('🚀 ~ file: AuthContext.tsx:56 ~ data:', data);
