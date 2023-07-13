@@ -166,7 +166,6 @@ export const NewProductGeneralSchema = z.object({
 		.object({
 			value: z
 				.custom<File>()
-				.array()
 				.refine((file) => !!file?.[0], 'Img field cannot be empty')
 				.refine(
 					(file) => file?.[0]?.size <= MAX_FILE_SIZE,
