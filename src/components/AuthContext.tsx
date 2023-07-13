@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: any) => {
 				'Content-Type': 'application/json'
 			},
 			credentials: 'include',
-			mode: 'no-cors',
+
 			body: JSON.stringify({
 				email,
 				password
