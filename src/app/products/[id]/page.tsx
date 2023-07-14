@@ -1,5 +1,6 @@
 'use client';
 
+import LoadingPage from '@/components/LoadingPage';
 import { apiAddress } from '@/utils/variables';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -47,7 +48,9 @@ const Product = ({ params }) => {
 			{/* <span className='w-12 h-12  rounded-[50%] flex items-center justify-center absolute top-0 bottom-0 m-auto cursor-pointer opacity-50 z-10'>
 				<span className='w-10 h-10 bg-secondary'></span>
 			</span> */}
-			{productData && (
+			{loading ? (
+				<LoadingPage />
+			) : (
 				<div className='w-full h-full flex flex-col gap-3'>
 					<div className=' w-full aspect-4/3 overflow-hidden'>
 						<Image
