@@ -23,7 +23,7 @@ export const SelectInput = ({
 				{...register}
 				className={`w-full p-[10px] border-solid border-[1px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0   text-base transition-transform invalid:border-red-600 peer ${
 					fields && 'isValid'
-				} ${fields && errors && 'category text-red-400'}`}>
+				} ${fields && errors && 'category'}`}>
 				<option value='' disabled>
 					{/* TODO: Fix Below */}
 					{/* --{placeholder}-- */}
@@ -68,7 +68,7 @@ export const TextOrNumberInput = ({
 			<input
 				className={`w-full p-[10px] border-solid border-[1px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0   text-base transition-transform invalid:border-red-600 peer ${
 					fields && 'isValid'
-				} ${fields && errors && 'modified text-red-400'}`}
+				} ${fields && errors && 'modified'}`}
 				type={type}
 				{...register}
 				aria-invalid={!!errors}
@@ -102,7 +102,7 @@ export const DescriptionInput = ({
 			<textarea
 				className={`w-full p-[10px] h-36 border-solid border-[1px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0  text-base transition-transform invalid:border-red-600 peer ${
 					fields && 'isValid'
-				} ${fields && errors && 'modified text-red-400'}`}
+				} ${fields && errors && 'modified'}`}
 				type={type}
 				{...register}
 				aria-invalid={!!errors}
@@ -164,7 +164,7 @@ export const CheckboxInput = ({
 				tabIndex={0}
 				className={`w-full p-[10px] border-solid border-[1px] h-[45px] dark:bg-primary border-opacity-20 bg-white rounded-md outline-0 text-black  text-base transition-transform invalid:border-red-600 peer ${
 					fields && 'isValid'
-				} ${fields && errors && 'modified text-red-400'}`}
+				} ${fields && errors && 'modified'}`}
 				onClick={(e) => {
 					setShowModal(true);
 				}}></div>

@@ -48,15 +48,20 @@ const NavBar = () => {
 				</span>
 			</Link>
 			<nav
-				className={`flex gap-1 w-full left-0 absolute transition-transform z-50 bg-gray-100 flex-col py-8 px-2 top-11 md:w-auto md:static md:bg-transparent md:flex-row md:translate-x-0 md:py-0 dark:bg-secondary ${
+				className={`flex gap-2 w-full left-0 absolute transition-transform z-50 bg-gray-100 flex-col py-8 px-2 top-11 md:w-auto md:static md:bg-transparent md:flex-row md:translate-x-0 md:py-0 dark:bg-secondary ${
 					!ham && 'transition-transform -translate-x-full'
 				}`}>
 				<Link href='/about'>
 					<p className='table px-3 w-full cursor-pointer'>About</p>
 				</Link>
+				<hr className='dark:opacity-30' />
 				<Dropdown
 					value={'Categories'}
 					content={['Vehicles', 'Eletronic', 'Fashion']}></Dropdown>
+				<hr className='dark:opacity-30' />
+				<Link href='/products/sell'>
+					<p className='table px-3 w-full cursor-pointer'>Sell</p>
+				</Link>
 			</nav>
 
 			<div className='flex gap-3 items-center'>

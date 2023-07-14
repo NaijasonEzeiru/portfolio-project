@@ -128,8 +128,14 @@ const Login = () => {
 							<button
 								type='submit'
 								disabled={isSubmitting}
-								className='flex gap-1 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto'>
-								Log In
+								className='flex disabled:bg-loadingSecondary dark:disabled:bg-disabledGold gap-2 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto'>
+								<div
+									className={isSubmitting ? 'lds' : 'hidden'}>
+									<div className='bg-white dark:bg-gray-800'></div>
+									<div className='bg-white dark:bg-gray-800'></div>
+									<div className='bg-white dark:bg-gray-800'></div>
+								</div>
+								<p>Log In</p>
 							</button>
 						</form>
 

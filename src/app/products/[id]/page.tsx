@@ -20,6 +20,9 @@ import { useEffect, useState } from 'react';
 const Product = ({ params }) => {
 	const [productData, setProductData] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [imageIndex, setImageIndex] = useState(0);
+	const [msg, setMsg] = useState('');
+
 	useEffect(() => {
 		const product = async () => {
 			// console.log('whatever');
@@ -54,7 +57,7 @@ const Product = ({ params }) => {
 				<div className='w-full h-full flex flex-col gap-3'>
 					<div className=' w-full aspect-4/3 overflow-hidden'>
 						<Image
-							src={productData?.cloudinary_ids?.[1]}
+							src={productData?.cloudinary_ids?.[imageIndex]}
 							alt=''
 							// alt={`Picture of a ${productData?Name}`}
 							width={171}
@@ -66,7 +69,8 @@ const Product = ({ params }) => {
 						{productData?.cloudinary_ids.map((imgs, i) => (
 							<div
 								key={i}
-								className='flex overflow-y-hidden overflow-x-auto overscroll-x-contain snap-mandatory snap-x'>
+								className='flex overflow-y-hidden overflow-x-auto overscroll-x-contain snap-mandatory snap-x cursor-pointer'
+								onClick={() => setImageIndex(i)}>
 								<div className=' w-full aspect-4/3 overflow-hidden'>
 									<Image
 										src={imgs}
@@ -110,25 +114,28 @@ const Product = ({ params }) => {
 						<p className='border-solid border-[1px] border-secondary dark:border-goldColor py-[7px] font-medium px-5 rounded-lg shadow-md'>
 							+234{productData?.phone}
 						</p>{' '}
-						<button className='flex gap-1 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black'>
-							Call Seller
-						</button>
+						<a href={`tel:+234${productData.phone}`}>
+							<button className='flex gap-1 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black'>
+								Call Seller
+							</button>
+						</a>
 					</span>
 					<hr />
 					<div className='flex gap-3 flex-col m-1'>
 						<span>
 							<p>Chat with seller</p>
-							<input
-								type='text'
+							<textarea
+								className='w-full border-solid border-gray-500 border-[1px] rounded-lg bg-transparent dark:border-gray-400'
 								placeholder='Type a message'
-								className='h-11 pl-1 w-full border-solid border-gray-500 border-[1px] rounded-lg bg-transparent dark:border-gray-400'
-							/>
-							{/* <textarea
-									className='w-full border-solid border-gray-500 border-[1px] rounded-lg bg-transparent dark:border-gray-400'
-									placeholder='Type a message'></textarea> */}
+								value={msg}
+								onChange={(e) =>
+									setMsg(e.target.value)
+								}></textarea>
 						</span>
 						<span className='text-center w-full'>
-							<button className='gap-1 w-full sm:w-max py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black'>
+							<button
+								onClick={() => setMsg('')}
+								className='gap-1 w-full sm:w-max py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black'>
 								Send Message
 							</button>
 						</span>
@@ -138,9 +145,7 @@ const Product = ({ params }) => {
 						{Object.keys(
 							JSON.parse(productData?.specifications)
 						).map((key, i) => (
-							<span
-								key={i}
-								className='py-3 flex items-center gap-1'>
+							<span key={i} className='py-3 flex flex-col gap-1'>
 								<p className='capitalize font-thin text-sm'>
 									{key}:
 								</p>
@@ -159,7 +164,9 @@ const Product = ({ params }) => {
 					<hr />
 					{productData?.description && (
 						<div>
-							<p>Description:</p>
+							<p className='capitalize font-thin text-sm'>
+								Description:
+							</p>
 							<p>{productData?.description}</p>
 						</div>
 					)}

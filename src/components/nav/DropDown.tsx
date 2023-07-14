@@ -39,7 +39,7 @@ const Dropdown = ({ value, content, children, tab }: any) => {
 				</span>
 			</span>
 			<div
-				className={`flex flex-col max-h-0 transition-all ml-4 overflow-hidden md:top-8 md:-left-2 px-8 md:absolute md:bg-gray-100 md:w-32 dark:md:bg-secondary md:dark:text-goldColor md:dark:border-white md:border-t-0 md:dark:border-t-0 border-black border-solid border-t-0 md:border-[1px] opacity-0 duration-500 md:text-gray-600 ${
+				className={`flex flex-col gap-1 relative top-1 max-h-0 transition-all ml-1 overflow-hidden md:top-8 md:-left-2 px-8 md:absolute md:bg-gray-100 md:w-32 dark:md:bg-secondary md:dark:text-goldColor md:dark:border-white md:border-t-0 md:dark:border-t-0 border-black border-solid border-t-0 md:border-[1px] opacity-0 duration-500 md:text-gray-600 ${
 					dropdown && '!max-h-52 !opacity-100 pb-4'
 				}`}>
 				{content.map((item: string, i: number) => (
