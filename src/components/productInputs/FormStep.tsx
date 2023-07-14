@@ -35,7 +35,7 @@ export function FormStep() {
 			return <VehiclesInput />;
 		case 'Headphones':
 			return <Headphones />;
-		case 'Laptops and Computers':
+		case 'Computers':
 			return <LaptopsAndComputers />;
 		case 'Jewelries':
 			return <Jewelries />;

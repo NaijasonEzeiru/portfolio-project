@@ -32,29 +32,36 @@ const HomeProducts = () => {
 		<LoadingPage />
 	) : (
 		<div className='px-3 py-11 grid gap-x-2 gap-y-3 gtc grid-flow-row md:px-14 lg:px-32'>
-			{allProducts.map((product, i) =>
-				JSON.parse(product.specifications)?.title ? (
+			{allProducts.length > 0 &&
+				allProducts.map((product, i) => (
 					<VerticalProductCard
-						productName={JSON.parse(product.specifications).title}
+						productName={
+							JSON.parse(product?.specifications).title
+								? JSON.parse(product?.specifications).title
+								: JSON.parse(product?.specifications).make
+								? `${
+										JSON.parse(product?.specifications).make
+								  } ${
+										JSON.parse(product?.specifications)
+											.model
+								  } ${
+										JSON.parse(product?.specifications)
+											.yearOfManufacture
+								  }`
+								: `${
+										JSON.parse(product.specifications).brand
+								  } ${
+										JSON.parse(product?.specifications)
+											?.model
+								  }`
+						}
 						location={product.state + ' ' + product.city}
 						productPrice={+product.price}
 						key={i}
 						imgs={product.cloudinary_ids}
 						id={product.id}
 					/>
-				) : (
-					<VerticalProductCard
-						key={i}
-						productName={`${
-							JSON.parse(product.specifications).brand
-						} ${JSON.parse(product?.specifications)?.model}`}
-						location={product.state + ' ' + product.city}
-						productPrice={+product.price}
-						imgs={product.cloudinary_ids}
-						id={product.id}
-					/>
-				)
-			)}
+				))}
 		</div>
 	);
 };

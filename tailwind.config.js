@@ -17,7 +17,9 @@ module.exports = {
 			colors: {
 				primary: 'var(--primary-color)',
 				secondary: 'var(--secondary-color)',
-				goldColor: 'var(--gold-color)'
+				goldColor: 'var(--gold-color)',
+				loadingSecondary: 'var(--loading-secondary-color)',
+				disabledGold: 'var(--disabled-gold-color)'
 			},
 			gridTemplateColumns: {
 				fluid: 'repeat(auto-fit, minmax(200px, 1fr)'

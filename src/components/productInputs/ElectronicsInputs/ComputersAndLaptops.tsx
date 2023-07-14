@@ -55,10 +55,10 @@ const ComputersAndLaptops = () => {
 	const RAMsList = [
 		'4GB DDR4',
 		'8GB DDR4',
+		'12GB DDR4',
 		'16GB DDR4',
 		'32GB DDR4',
 		'64GB DDR4',
-		'128GB DDR4',
 		'4GB DDR3',
 		'8GB DDR3',
 		'16GB DDR3',
@@ -67,10 +67,10 @@ const ComputersAndLaptops = () => {
 		'128GB DDR3',
 		'4GB LPDDR4',
 		'8GB LPDDR4',
+		'12GB LPDDR4',
 		'16GB LPDDR4',
 		'32GB LPDDR4',
-		'64GB LPDDR4',
-		'128GB LPDDR4'
+		'64GB LPDDR4'
 	];
 
 	const StorageCapacities = [
@@ -218,12 +218,12 @@ const ComputersAndLaptops = () => {
 		<form
 			onSubmit={handleSubmit(submit)}
 			className='flex flex-col gap-7 text-black dark:text-white'>
-			<TextOrNumberInput
+			<SelectInput
+				items={types}
 				register={register('type')}
 				errors={errors?.type?.message}
 				fields={fields?.type?.length > 0}
 				placeholder='type'
-				type='text'
 			/>
 			<TextOrNumberInput
 				register={register('brand')}
@@ -246,14 +246,6 @@ const ComputersAndLaptops = () => {
 				fields={fields?.colour?.length > 0}
 				placeholder='colour'
 				type='text'
-			/>
-
-			<SelectInput
-				items={types}
-				register={register('type')}
-				errors={errors?.type?.message}
-				fields={fields?.type?.length > 0}
-				placeholder='type'
 			/>
 			<SelectInput
 				items={conditions}

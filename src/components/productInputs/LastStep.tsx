@@ -11,12 +11,13 @@ import {
 	TextOrNumberInput
 } from '@/components/productInputs/InputFields';
 import { useFormState } from './FormContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from '../AuthContext';
 import { apiAddress } from '@/utils/variables';
 import { useRouter } from 'next/navigation';
 
 const LastStep = () => {
+	const [loading, setLoading] = useState(false);
 	const { setFormData, formData } = useFormState();
 	const { user }: any = useContext(AuthContext);
 	const router = useRouter();
@@ -43,6 +44,7 @@ const LastStep = () => {
 	const fields = watch();
 
 	const submit = async (data: lastStepSchemaType) => {
+		setLoading(true);
 		setFormData((prev) => ({ ...prev, ...data }));
 		console.log(formData);
 		const formInputs = new FormData();
@@ -67,8 +69,12 @@ const LastStep = () => {
 		});
 		const response = await res.json();
 		console.log(response);
-		if (response.ok) {
+		if (response?.message?.id) {
 			router.push('/');
+			setLoading(false);
+		} else {
+			alert('Something went wrong');
+			setLoading(false);
 		}
 	};
 
@@ -137,10 +143,15 @@ const LastStep = () => {
 			</div>
 
 			<button
-				type='submit'
-				disabled={isSubmitting}
-				className='flex gap-1 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto disabled:bg-red-600'>
-				Post Ad
+				type='button'
+				disabled={loading}
+				className='flex disabled:bg-loadingSecondary dark:disabled:bg-disabledGold gap-2 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto'>
+				<div className={loading ? 'lds' : 'hidden'}>
+					<div className='bg-white dark:bg-gray-800'></div>
+					<div className='bg-white dark:bg-gray-800'></div>
+					<div className='bg-white dark:bg-gray-800'></div>
+				</div>
+				<p>Post Ad</p>
 			</button>
 		</form>
 	);

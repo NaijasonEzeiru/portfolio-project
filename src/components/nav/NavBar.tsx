@@ -54,6 +54,9 @@ const NavBar = () => {
 				<Link href='/about'>
 					<p className='table px-3 w-full cursor-pointer'>About</p>
 				</Link>
+				<Dropdown
+					value={'Categories'}
+					content={['Vehicles', 'Eletronic', 'Fashion']}></Dropdown>
 			</nav>
 
 			<div className='flex gap-3 items-center'>

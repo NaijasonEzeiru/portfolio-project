@@ -926,7 +926,7 @@ export const places = [
 export const cat = [
 	{
 		name: 'Eletronics',
-		subs: ['Headphones', 'Laptops and Computers']
+		subs: ['Headphones', 'Computers']
 	},
 	{
 		name: 'Fashion',

@@ -154,7 +154,7 @@ const ShoesInput = () => {
 				register={register('soleMaterial')}
 				errors={errors?.soleMaterial?.message}
 				fields={fields?.soleMaterial?.length > 0}
-				placeholder='main Stone'
+				placeholder='Sole material'
 			/>
 			<button
 				type='submit'

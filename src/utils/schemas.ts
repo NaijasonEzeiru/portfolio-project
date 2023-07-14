@@ -60,19 +60,17 @@ export const RegisterSchema = z
 export const VehicleSchema = z.object({
 	condition: z.string().min(3, { message: 'Select the condition' }),
 	transmission: z.string().min(3, { message: 'Select the transmission' }),
-	model: z.string().min(3, { message: 'input the model' }),
+	model: z.string().min(2, { message: 'Too short' }),
 	keyFeatures: z.string().array().optional(),
 	// .nonempty({ message: 'This field is required' }),
 	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
 	// VIN: z.string().min(3, { message: 'input the VIN' }),
-	make: z.string().min(3, { message: 'input the make' }),
+	make: z.string().min(2, { message: 'Too short' }),
 	yearOfManufacture: z
 		.string()
 		.min(3, { message: 'Select the year of manufacature' }),
 	mileage: z.coerce.number().positive().optional(),
-	secondCondition: z
-		.string()
-		.min(3, { message: 'Select the second condition' })
+	secondCondition: z.string().min(3, { message: 'This field is required' })
 	// registered: z
 	// 	.string()
 	// 	.array()
@@ -81,7 +79,7 @@ export const VehicleSchema = z.object({
 
 export const FashionWatchesSchema = z.object({
 	title: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
-	brand: z.string().min(3, { message: 'input the brand name' }),
+	brand: z.string().min(2, { message: 'Too short' }),
 	gender: z.string().min(3, { message: 'Select the gender' }),
 	movement: z.string().min(3, { message: 'Select the movement type' }),
 	display: z.string().min(3, { message: 'Select the display type' }),
@@ -90,17 +88,17 @@ export const FashionWatchesSchema = z.object({
 	bandColour: z
 		.string()
 		.min(3, { message: 'Cannot be less than 3 characters' }),
-	features: z
-		.string()
-		.array()
-		.nonempty({ message: 'This field is required' }),
+	features: z.string().array().optional(),
 	style: z.string().array().nonempty({ message: 'This field is required' })
 });
 
 export const lastStepSchema = z.object({
 	price: z.coerce.number().positive(),
-	desc: z.string().min(20, { message: 'Too short' }),
-	negotiable: z.string().min(2, { message: 'Select the condition' }),
+	desc: z.string().min(10, { message: 'Too short' }),
+	negotiable: z
+		.string()
+		.min(2, { message: 'Select the condition' })
+		.optional(),
 	phone: z.coerce.string(),
 	userName: z.string().min(3, { message: 'Cannot be less than 3 characters' })
 });
@@ -119,7 +117,7 @@ export const HeadphonesSchema = z.object({
 export const JewelriesSchema = z.object({
 	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
 	title: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
-	brand: z.string().min(3, { message: 'input the brand' }),
+	brand: z.string().min(3, { message: 'Too short' }),
 	condition: z.string().min(3, { message: 'Select the condition' }),
 	gender: z.string().min(3, { message: 'Select the gender' }),
 	mainMaterial: z.string().min(3, { message: 'This field is required' }),
@@ -130,12 +128,15 @@ export const JewelriesSchema = z.object({
 export const ShoesSchema = z.object({
 	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
 	title: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
-	brand: z.string().min(3, { message: 'input the brand' }),
+	brand: z.string().min(3, { message: 'Too short' }),
 	size: z.string().min(1, { message: 'input the size' }),
 	condition: z.string().min(3, { message: 'Select the condition' }),
 	gender: z.string().min(3, { message: 'Select the gender' }),
 	mainMaterial: z.string().min(3, { message: 'This field is required' }),
-	soleMaterial: z.string().min(3, { message: 'This field is required' }),
+	soleMaterial: z
+		.string()
+		.min(3, { message: 'This field is required' })
+		.optional(),
 	type: z.string().min(3, { message: 'Select the type' })
 });
 
@@ -143,7 +144,7 @@ export const LaptopAndComputersSchema = z.object({
 	colour: z.string().min(3, { message: 'Cannot be less than 3 characters' }),
 	brand: z.string().min(3, { message: 'input the brand' }),
 	condition: z.string().min(3, { message: 'Select the condition' }),
-	model: z.string().min(3, { message: 'input the model' }),
+	model: z.string().min(2, { message: 'Too short' }),
 	type: z.string().min(3, { message: 'Select the type' }),
 	processor: z.string().min(3, { message: 'This field is required' }),
 	operatingSystem: z.string().min(3, { message: 'This field is required' }),
@@ -156,9 +157,12 @@ export const LaptopAndComputersSchema = z.object({
 });
 
 export const NewProductGeneralSchema = z.object({
-	category: z.coerce.number().min(0).max(20),
-	subCategory: z.string().min(3, { message: 'Select the sub-category' }),
-	state: z.coerce.number().min(0).max(36),
+	category: z.coerce
+		.number()
+		.min(1, { message: 'Select the category' })
+		.max(20),
+	subCategory: z.string().min(0, { message: 'Select the sub-category' }),
+	state: z.coerce.number().min(0, { message: 'Select the state' }).max(36),
 	city: z.string().min(3, { message: 'Select the city' }),
 	imgs: z
 		.object({

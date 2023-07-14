@@ -11,7 +11,7 @@ const Dropdown = ({ value, content, children, tab }: any) => {
 	return (
 		<span className='relative'>
 			<span
-				className='flex text-sm gap-1'
+				className='flex text-sm gap-1 px-3 items-center'
 				onClick={() => setDropdown(!dropdown)}
 				tabIndex={tab}>
 				{children}
@@ -29,7 +29,7 @@ const Dropdown = ({ value, content, children, tab }: any) => {
 						viewBox='0 0 24 24'
 						strokeWidth={1.5}
 						stroke='currentColor'
-						className='w-6 h-6'>
+						className='w-4 h-4'>
 						<path
 							strokeLinecap='round'
 							strokeLinejoin='round'
