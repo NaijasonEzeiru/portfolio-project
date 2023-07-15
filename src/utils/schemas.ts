@@ -159,7 +159,7 @@ export const LaptopAndComputersSchema = z.object({
 export const NewProductGeneralSchema = z.object({
 	category: z.coerce
 		.number()
-		.min(1, { message: 'Select the category' })
+		.min(0, { message: 'Select the category' })
 		.max(20),
 	subCategory: z.string().min(0, { message: 'Select the sub-category' }),
 	state: z.coerce.number().min(0, { message: 'Select the state' }).max(36),

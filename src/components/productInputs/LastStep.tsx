@@ -43,7 +43,7 @@ const LastStep = () => {
 
 	const fields = watch();
 
-	const submit = async (data: lastStepSchemaType) => {
+	const finalSubmit = async (data: lastStepSchemaType) => {
 		setLoading(true);
 		setFormData((prev) => ({ ...prev, ...data }));
 		console.log(formData);
@@ -80,7 +80,7 @@ const LastStep = () => {
 
 	return (
 		<form
-			onSubmit={handleSubmit(submit)}
+			// onSubmit={handleSubmit(submit)}
 			className='flex flex-col gap-7 text-black dark:text-white'>
 			<DescriptionInput
 				register={register('desc')}
@@ -144,6 +144,7 @@ const LastStep = () => {
 
 			<button
 				type='button'
+				onClick={() => finalSubmit}
 				disabled={loading}
 				className='flex disabled:bg-loadingSecondary dark:disabled:bg-disabledGold gap-2 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto'>
 				<div className={loading ? 'lds' : 'hidden'}>
