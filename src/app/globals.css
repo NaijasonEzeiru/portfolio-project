@@ -133,7 +133,7 @@ body {
 	}
 	50%,
 	100% {
-		top: 2px;
+		top: 8px;
 		height: 10px;
 	}
 }

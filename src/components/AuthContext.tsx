@@ -37,19 +37,9 @@ export const AuthProvider = ({ children }: any) => {
 			setUser(data);
 			console.log(data);
 			router.push('/');
-			// } else if (data.emailError) {
-			// 	setError('email', {
-			// 		type: 'server',
-			// 		message: data.emailError
-			// 	});
-			// } else if (data.passwordError) {
-			// 	setError('email', {
-			// 		type: 'server',
-			// 		message: data.emailError
-			// 	});
 		} else {
 			setErr(data);
-			// error ?? console.log(error);
+			console.log(err);
 		}
 	};
 

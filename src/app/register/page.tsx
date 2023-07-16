@@ -55,10 +55,10 @@ const Register = () => {
 		const data = await res.json();
 		if (res.ok) {
 			router.push('/login');
-		} else if (data.emailError) {
+		} else if (data.message == 'This email address is already taken') {
 			setError('email', {
 				type: 'server',
-				message: data.emailError
+				message: data.message
 			});
 		} else {
 			alert(data?.message);

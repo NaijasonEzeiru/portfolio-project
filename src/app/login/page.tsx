@@ -22,18 +22,18 @@ const Login = () => {
 	}, [user]);
 
 	useEffect(() => {
-		if (err.emailError) {
+		if (err?.emailError) {
 			setError('email', {
 				type: 'server',
 				message: err.emailError
 			});
-		} else if (err.passwordError) {
-			setError('email', {
+		} else if (err?.passwordError) {
+			setError('password', {
 				type: 'server',
-				message: err.emailError
+				message: err.passwordError
 			});
-		} else {
-			alert(err?.message);
+		} else if (err) {
+			console.log({ err: err });
 		}
 	}, [err]);
 
