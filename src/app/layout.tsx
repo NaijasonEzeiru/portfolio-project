@@ -9,13 +9,13 @@ import Providers from '@/components/Providers';
 
 // const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-	title: 'Babaloja',
-	description: 'Classified ads',
-	icons: {
-		icon: '/favicon.png'
-	}
-};
+// export const metadata = {
+// 	title: 'Babaloja',
+// 	description: 'Classified ads',
+// 	icons: {
+// 		icon: '/favicon.png'
+// 	}
+// };
 
 export default function RootLayout({
 	children
