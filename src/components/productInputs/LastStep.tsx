@@ -15,6 +15,7 @@ import { useContext, useState } from 'react';
 import AuthContext from '../AuthContext';
 import { apiAddress } from '@/utils/variables';
 import { useRouter } from 'next/navigation';
+import LoadingPage from '../LoadingPage';
 
 const LastStep = () => {
 	const [loading, setLoading] = useState(false);
@@ -78,7 +79,9 @@ const LastStep = () => {
 		}
 	};
 
-	return (
+	return isSubmitting ? (
+		<LoadingPage />
+	) : (
 		<form
 			onSubmit={handleSubmit(finalSubmit)}
 			className='flex flex-col gap-7 text-black dark:text-white'>
@@ -145,7 +148,7 @@ const LastStep = () => {
 			<button
 				// type='button'
 				onClick={() => finalSubmit}
-				disabled={loading}
+				disabled={isSubmitting}
 				className='flex disabled:bg-loadingSecondary dark:disabled:bg-disabledGold gap-2 py-2 px-5 rounded-lg shadow-md bg-secondary dark:bg-goldColor text-white dark:text-black w-max m-auto'>
 				<div className={loading ? 'lds' : 'hidden'}>
 					<div className='bg-white dark:bg-gray-800'></div>
