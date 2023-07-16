@@ -9,7 +9,7 @@ const AuthContext = createContext(null) as any;
 
 export const AuthProvider = ({ children }: any) => {
 	const [user, setUser] = useState(null);
-	const [error, setError] = useState(null) as any;
+	const [err, setErr] = useState(null) as any;
 	const [loading, setLoading] = useState(false);
 	const [authChecking, setAuthChecking] = useState(true);
 
@@ -48,8 +48,8 @@ export const AuthProvider = ({ children }: any) => {
 			// 		message: data.emailError
 			// 	});
 		} else {
-			setError(data.message);
-			error ?? console.log(error);
+			setErr(data);
+			// error ?? console.log(error);
 		}
 	};
 
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }: any) => {
 			value={{
 				user,
 				loading,
-				error,
+				err,
 				authChecking,
 				login,
 				signout,

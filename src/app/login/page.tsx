@@ -12,7 +12,7 @@ import LoadingPage from '@/components/LoadingPage';
 const Login = () => {
 	const [serverError, setServerError] = useState('lets see ho it goes');
 	const [rememberMe, setRememberMe] = useState(false);
-	const { login, error, user, authChecking }: any = useContext(AuthContext);
+	const { login, err, user, authChecking }: any = useContext(AuthContext);
 
 	const router = useRouter();
 
@@ -20,6 +20,22 @@ const Login = () => {
 		//TODO: display "you are logged in already"
 		user && router.push('/');
 	}, [user]);
+
+	useEffect(() => {
+		if (err.emailError) {
+			setError('email', {
+				type: 'server',
+				message: err.emailError
+			});
+		} else if (err.passwordError) {
+			setError('email', {
+				type: 'server',
+				message: err.emailError
+			});
+		} else {
+			alert(err?.message);
+		}
+	}, [err]);
 
 	const {
 		register,
@@ -30,37 +46,6 @@ const Login = () => {
 		mode: 'onSubmit',
 		resolver: zodResolver(LoginSchema)
 	});
-
-	// const login = async ({ email, password }) => {
-	// 	const res = await fetch('http://localhost:4000/auth/login', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json'
-	// 		},
-	// 		credentials: 'include',
-	// 		body: JSON.stringify({
-	// 			email,
-	// 			password
-	// 		})
-	// 	});
-	// 	const data = await res.json();
-	// 	if (res.ok) {
-	// 		const { first_name, last_name, email, id } = data;
-	// 		dispatch(update({ first_name, last_name, email, id }));
-	// 		Router.push('/');
-	// 	} else if (data.emailError) {
-	// 		setError('email', { type: 'server', message: data.emailError });
-	// 	} else if (data.passwordError) {
-	// 		setError('password', {
-	// 			type: 'server',
-	// 			message: data.passwordError
-	// 		});
-	// 	} else {
-	// 		setServerError(
-	// 			'Something went wrong. It could be a problem with the server'
-	// 		);
-	// 	}
-	// };
 
 	return (
 		<div className='min-h-[75vh] bg-white rounded-lg shadow-md text-black text-center py-12 my-8 px-3 m-3 flex gap-11 flex-col dark:bg-secondary dark:text-white md:mx-14 md:px-16 lg:mx-32 justify-center'>
