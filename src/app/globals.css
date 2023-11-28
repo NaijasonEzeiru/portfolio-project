@@ -3,137 +3,108 @@
 @tailwind utilities;
 
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
-	--primary-color: #3dd24c;
-	/* --primary-color: #3b3b3b; */
-	--secondary-color: #12882c;
-	/* --secondary-color: #1e1e1e; */
-	--loading-secondary-color: #a7ffba;
-	--disabled-gold-color: #7b653a;
-	--disabled-color: #7cfb98;
-	--off-white-color: #f1f1f1;
-	--white-color: #fff;
-	--black-color: #000;
-	--gold-color: #e2b355;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary-color: #3dd24c;
+  /* --primary-color: #3b3b3b; */
+  --secondary-color: #12882c;
+  /* --secondary-color: #1e1e1e; */
+  --loading-secondary-color: #a7ffba;
+  --disabled-gold-color: #7b653a;
+  --disabled-color: #7cfb98;
+  --off-white-color: #f1f1f1;
+  --white-color: #fff;
+  --black-color: #000;
+  --gold-color: #e2b355;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply m-auto flex items-center bg-secondary gap-1 py-2 px-5 rounded-lg shadow-md text-white justify-center hover:scale-105 disabled:bg-slate-400;
+  }
+  /* .line-input { @apply w-full focus-visible:outline-0 border-b-2 border-gray-400 focus-visible:border-b-[1px] focus-visible:border-solid focus-visible:border-goldColor bg-transparent} */
+  .PhoneInputInput {
+    @apply w-full focus-visible:outline-0 border-b-2 border-gray-400 pr-7 focus-visible:border-b-[1px] focus-visible:border-solid focus-visible:border-orange-500 bg-transparent;
+  }
+  /* .PhoneInputCountrySelect {
+    @apply bg-primaryBg text-primaryText;
+  } */
 }
 
 body {
-	overflow-x: hidden;
-	scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* * {
 	outline: red 1px solid;
 } */
 
+.grid-container {
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
 :nth-child(1) {
-	--index: 1;
+  --index: 1;
 }
 :nth-child(2) {
-	--index: 2;
+  --index: 2;
 }
 :nth-child(3) {
-	--index: 3;
+  --index: 3;
 }
 :nth-child(4) {
-	--index: 4;
+  --index: 4;
 }
 :nth-child(5) {
-	--index: 5;
+  --index: 5;
 }
 :nth-child(6) {
-	--index: 6;
+  --index: 6;
 }
 :nth-child(7) {
-	--index: 7;
+  --index: 7;
 }
 :nth-child(8) {
-	--index: 8;
+  --index: 8;
 }
 :nth-child(9) {
-	--index: 9;
+  --index: 9;
 }
 :nth-child(10) {
-	--index: 10;
+  --index: 10;
 }
 
 .border-tooltip::after {
-	border-color: transparent transparent var(--secondary-color) transparent;
-}
-
-.border-tooltip-dark::after {
-	border-color: transparent transparent #fff transparent;
-}
-
-.gtc {
-	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  border-color: transparent transparent var(--secondary-color) transparent;
 }
 
 .modal {
-	box-shadow: 0px -258px 7px 20000px #000000bf;
+  box-shadow: 0px -258px 7px 20000px #000000bf;
 }
 
 .custom-shadow {
-	box-shadow: inset 0px 0px 5px 2px #12882c24;
+  box-shadow: inset 0px 0px 5px 2px #12882c24;
 }
 
 .flip {
-	animation: flip 2s infinite;
-	animation-delay: calc(0.2s * var(--index)) !important;
+  animation: flip 2s infinite;
+  animation-delay: calc(0.2s * var(--index)) !important;
 }
 
 @keyframes flip {
-	0%,
-	80% {
-		/* transform: rotateY(360deg); */
-		transform: matrix(1, 0, 0, 1, 13, 0);
-	}
-}
-
-.lds {
-	display: inline-block;
-	position: relative;
-	width: 12px;
-	height: 12px;
-}
-.lds div {
-	display: inline-block;
-	position: absolute;
-	/* left: 2px; */
-	width: 4px;
-	background: #fff;
-	animation: lds 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-.lds div:nth-child(1) {
-	left: 0px;
-	animation-delay: -0.24s;
-}
-.lds div:nth-child(2) {
-	left: 6px;
-	animation-delay: -0.12s;
-}
-.lds div:nth-child(3) {
-	left: 12px;
-	animation-delay: 0;
-}
-@keyframes lds {
-	0% {
-		top: 0px;
-		height: 16px;
-	}
-	50%,
-	100% {
-		top: 8px;
-		height: 10px;
-	}
+  0%,
+  80% {
+    /* transform: rotateY(360deg); */
+    transform: matrix(1, 0, 0, 1, 13, 0);
+  }
 }
