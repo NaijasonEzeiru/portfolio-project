@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }: any) => {
   const router = useRouter();
 
   const login = async ({ email, password }: LoginSchemaType) => {
-    console.log(email);
     setLoading(true);
     const res = await fetch(`/api/auth/login`, {
       method: 'POST',
@@ -40,13 +39,14 @@ export const AuthProvider = ({ children }: any) => {
         password
       })
     });
+    console.log({ res });
     const data = await res.json();
-    console.log({ data });
     setLoading(false);
     if (res.ok) {
       setUser(data.user);
-      console.log(data.user);
       router.push('/');
+    } else if (res.status >= 500) {
+      alert(data?.message);
     } else {
       setErr(data.message);
     }
@@ -72,9 +72,8 @@ export const AuthProvider = ({ children }: any) => {
     const res = await fetch(`/api/auth/login`, {
       credentials: 'include'
     });
-    const data = await res.json();
-    console.log('🚀 ~ file: AuthContext.tsx:56 ~ data:', data);
     if (res.ok) {
+      const data = await res.json();
       setUser(data.user);
       setAuthChecking(false);
     } else {

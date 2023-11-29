@@ -6,8 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema, LoginSchemaType } from '../../utils/schemas';
 import AuthContext from '../../components/AuthContext';
-import { useRouter } from 'next/navigation';
-import LoadingPage from '@/components/LoadingPage';
 
 const Login = () => {
   // const [rememberMe, setRememberMe] = useState(false);
@@ -93,7 +91,7 @@ const Login = () => {
                 }`}>
                 {/* <ImSpinner /> */}
               </span>
-              <p className={`${isSubmitting && 'opacity-40'}`}>Sign Up</p>
+              <p className={`${isSubmitting && 'opacity-40'}`}>Log In</p>
             </button>
           </form>
 
