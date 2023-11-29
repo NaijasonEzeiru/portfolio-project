@@ -3,9 +3,9 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export async function getUser() {
+async function getUser() {
   console.log({ cookies: cookies().toString() });
-  const res = await fetch(`http://localhost:3000/api/auth/login`, {
+  const res = await fetch(`https://portfolio.naijason.tech/api/auth/login`, {
     headers: { Cookie: cookies().toString() }
   });
   const data = await res.json();
