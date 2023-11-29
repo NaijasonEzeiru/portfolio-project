@@ -28,7 +28,11 @@ export async function middleware(req: NextRequest) {
     if (path.startsWith('/api/admin') || path.startsWith('/api/auth/logout')) {
       return getErrorResponse(401, 'You are not logged in');
     }
-    if (path.startsWith('/admin') || path.startsWith('/dashboard')) {
+    if (
+      path.startsWith('/admin') ||
+      path.startsWith('/dashboard') ||
+      path.startsWith('/sell')
+    ) {
       return NextResponse.redirect(
         new URL(
           `/login?${new URLSearchParams({
@@ -127,6 +131,7 @@ export const config = {
     '/admin/:path*',
     '/api/admin/:path*',
     '/api/auth/logout',
-    '/api/admin'
+    '/api/admin',
+    '/sell'
   ]
 };
